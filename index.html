@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Feliz Cumpleaños Marumi 🎂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        /* Pantalla de inicio */
+        .inicio {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #ff1493;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        .fecha {
+            background: #ffb6c1;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 20px 0;
+            font-size: 1.3em;
+        }
+        
+        .botones {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #ff69b4;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #ff1493;
+            transform: scale(1.05);
+        }
+        
+        .btn-danger {
+            background: #666;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #ff4444;
+        }
+        
+        /* Carta */
+        .carta {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.4);
+            max-width: 800px;
+            width: 100%;
+            display: none;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2em;
+            float: right;
+            cursor: pointer;
+            color: #ff69b4;
+        }
+        
+        .close-btn:hover {
+            color: #ff1493;
+        }
+        
+        .testamento {
+            padding: 20px;
+        }
+        
+        .testamento h2 {
+            color: #ff1493;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .testamento p {
+            margin: 25px 0;
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .resaltado {
+            color: #ff1493;
+            font-weight: bold;
+            font-size: 1.4em;
+            display: block;
+            margin: 30px 0 15px 0;
+        }
+        
+        .corazones {
+            text-align: center;
+            font-size: 2em;
+            margin: 30px 0;
+            animation: latido 1s infinite;
+        }
+        
+        @keyframes latido {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .firma {
+            text-align: right;
+            font-size: 1.5em;
+            color: #ff1493;
+            margin-top: 40px;
+            border-top: 2px dashed #ffb6c1;
+            padding-top: 20px;
+        }
+
+        .nota-especial {
+            background: #fff0f5;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #ff69b4;
+            margin: 30px 0;
+            font-style: italic;
+        }
+
+        /* Galería de fotos */
+        .galeria {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .galeria img {
+            width: 180px;
+            height: 180px;
+            border-radius: 15px;
+            border: 4px solid #ff69b4;
+            object-fit: cover;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .galeria img:hover {
+            transform: scale(1.05);
+            border-color: #ff1493;
+        }
+        
+        /* Modal de broma */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .modal-content h2 {
+            color: #ff1493;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .modal-content button {
+            margin: 10px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        
+        .btn-si {
+            background: #ff69b4;
+            color: white;
+        }
+        
+        .btn-no {
+            background: #666;
+            color: white;
+        }
+        
+        /* Corazones flotantes */
+        .heart-float {
+            position: fixed;
+            color: #ff69b4;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: 1;
+            animation: float 4s linear forwards;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Pantalla de inicio -->
+    <div class="inicio" id="inicio">
+        <h1>🎉 ¡Feliz Cumpleaños Marumi! 🎉</h1>
+        
+        <div class="fecha">
+            🎂 06 de Marzo 🎂
+        </div>
+        
+        <div class="botones">
+            <button class="btn btn-primary" onclick="abrirCarta()">
+                💌 Abrir Cartita
+            </button>
+            <button class="btn btn-danger" onclick="abrirBroma()">
+                🚫 No Abrir
+            </button>
+        </div>
+        
+        <div class="corazones">
+            ❤️ 💕 ❤️
+        </div>
+    </div>
+
+    <!-- Carta con testamento y fotos -->
+    <div class="carta" id="carta">
+        <button class="close-btn" onclick="cerrarCarta()">✖</button>
+        
+        <div class="testamento">
+            <h2>📜 Para mi Marumi 📜</h2>
+            
+            <div class="corazones">
+                ❤️ 💕 ❤️
+            </div>
+
+            <!-- GALERÍA DE FOTOS QUE SIRVEN -->
+            <div class="galeria">
+                <img src="https://i.pinimg.com/736x/7e/c0/e7/7ec0e716806efd165f76d394210da3eb.jpg" alt="Tarjeta bonita">
+                <img src="https://variety.com/wp-content/uploads/2023/10/GettyImages-1637208780-e1696959760879.jpg?w=1000&h=667&crop=1" alt="Taylor Swift">
+                <img src="https://4kwallpapers.com/images/wallpapers/taylor-swift-prime-3840x2160-18760.jpg" alt="Taylor Swift fondo">
+                <img src="https://i.pinimg.com/236x/61/a9/d7/61a9d7d9af67c2797e5c6a50f2fa0719.jpg" alt="Detalle">
+            </div>
+            
+            <p>
+                <span class="resaltado">Mi querida Marumi,</span>
+                
+                <p>Hoy 6 de marzo, en tu cumpleaños, quiero escribirte esto porque eres alguien muy especial para mí.</p>
+
+                <div class="nota-especial">
+                    <p>✨ Me acordaba que nos conocemos desde el año pasado cuando te molestaba jsjsjs, y mira todo lo que hemos llegado a ser. Empezamos a tener más confianza cuando jugábamos Minecraft y empezamos a conectar más en todo: en bromearnos, en contarnos nuestras cosas, y nos hicimos más unidos. Es muy lindo la verdad todo lo que hemos construido. 🎮</p>
+                </div>
+
+                <p>Y PERDÓN si dije "peor día de mi vida" JASJGSJA, te estaba molestando en realidad, sabes que siempre me gusta molestarte. Pero que sepas que hoy es un hermoso día para ti y para mí, y para todas las amistades que tienes y tu familia también.</p>
+                
+                <span class="resaltado">TE QUIERO</span>
+                <p>Y quiero que sepas que aunque a veces digas que no, para todos eres importante. Eres una increíble chica: trabajadora, estudiosa, que nunca se rinde, que siempre sigue adelante. Sabes valorarte y eso es lo más importante. La verdad yo admiro mucho cómo eres.</p>
+                
+                <span class="resaltado">NUESTRA CONEXIÓN</span>
+                <p>Estoy muy feliz de tenerte en mi vida y quiero que sea así por mucho, mucho tiempo. Contigo quiero todo, y aunque sé que saco canitas verdes a veces jsjs, tú sabes lo mucho que te adoro, lo mucho que te quiero, y que cada día me gustas mucho más, elsapatito.</p>
+                
+                <p>Me encanta cómo somos el uno con el otro, cómo podemos bromear, cómo podemos contarnos todo, cómo nos entendemos sin necesidad de palabras. Es algo bonito y especial que valoro muchísimo.</p>
+                
+                <p>En este día tan especial para ti, quiero que sepas que mereces todo lo bonito del mundo, que mereces ser feliz y que voy a estar aquí para verte cumplir cada uno de tus sueños, para celebrar tus logros y para apoyarte en todo.</p>
+            </p>
+            
+            <div class="corazones">
+                💖 💗 💓 💖 💗 💓
+            </div>
+            
+            <p style="font-size: 1.3em; text-align: center; margin: 30px 0;">
+                Gracias por existir<br>
+                Gracias por llegar a mi vida<br>
+                Gracias por ser mi Marumi<br>
+                Te quiero muchísimo ❤️
+            </p>
+            
+            <div class="firma">
+                Con mucho cariño,<br>
+                [Piero Andre tu chico muack] 💕<br>
+                <span style="font-size: 0.6em;">06 de Marzo, 2025</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de broma -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2 id="modalTitulo">¿Segura preciosa? 🥺</h2>
+            <p id="modalTexto">Este botón es peligroso... ¿realmente quieres continuar?</p>
+            <div>
+                <button class="btn-si" onclick="respuestaSi()">Sí, quiero abrir</button>
+                <button class="btn-no" onclick="respuestaNo()" id="btnNoModal">No, mejor no</button>
+            </div>
+            <p id="contador" style="margin-top: 20px;"></p>
+        </div>
+    </div>
+
+    <script>
+        let contador = 0;
+        let noClicks = 0;
+        
+        // Crear corazones flotantes
+        function crearCorazon() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-float';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        
+        // Funciones de la carta
+        function abrirCarta() {
+            document.getElementById('inicio').style.display = 'none';
+            document.getElementById('carta').style.display = 'block';
+            // Crear corazones
+            for (let i = 0; i < 30; i++) {
+                setTimeout(crearCorazon, i * 100);
+            }
+        }
+        
+        function cerrarCarta() {
+            document.getElementById('carta').style.display = 'none';
+            document.getElementById('inicio').style.display = 'block';
+        }
+        
+        // Funciones de broma
+        function abrirBroma() {
+            document.getElementById('modal').style.display = 'flex';
+            contador = 0;
+            noClicks = 0;
+            document.getElementById('modalTitulo').innerHTML = '¿Segura preciosa? 🥺';
+            document.getElementById('modalTexto').innerHTML = 'Este botón es peligroso... ¿realmente quieres continuar?';
+            document.getElementById('contador').innerHTML = '';
+            document.getElementById('btnNoModal').style.display = 'inline-block';
+        }
+        
+        function respuestaSi() {
+            contador++;
+            if (contador === 1) {
+                document.getElementById('modalTitulo').innerHTML = '¿Estás completamente segura? 🤔';
+                document.getElementById('modalTexto').innerHTML = 'Te voy a dar otra oportunidad...';
+            } else if (contador === 2) {
+                document.getElementById('modalTitulo').innerHTML = '¡Última oportunidad! ⚠️';
+                document.getElementById('modalTexto').innerHTML = 'Si dices que sí, abriré la carta...';
+            } else if (contador === 3) {
+                document.getElementById('modal').style.display = 'none';
+                abrirCarta();
+            }
+        }
+        
+        function respuestaNo() {
+            noClicks++;
+            const btnNo = document.getElementById('btnNoModal');
+            
+            if (noClicks === 1) {
+                document.getElementById('modalTitulo').innerHTML = '¡Bien hecho! ✨';
+                document.getElementById('modalTexto').innerHTML = 'Esa fue la decisión correcta... pero ¿y si mejor sí?';
+                document.getElementById('contador').innerHTML = '😉';
+            } else if (noClicks === 2) {
+                document.getElementById('modalTitulo').innerHTML = 'No te dejaré, juas juas 😘';
+                document.getElementById('modalTexto').innerHTML = 'Vamos, dale al sí...';
+                btnNo.style.position = 'relative';
+                btnNo.style.left = Math.random() * 100 + 'px';
+                btnNo.style.top = Math.random() * 50 + 'px';
+            } else if (noClicks === 3) {
+                document.getElementById('modalTitulo').innerHTML = '¡No te dejaré waaaaa! 💖';
+                document.getElementById('modalTexto').innerHTML = 'Ya no puedes escapar... dale al SÍ';
+                btnNo.style.display = 'none';
+            } else if (noClicks >= 4) {
+                document.getElementById('modal').style.display = 'none';
+                abrirCarta();
+            }
+        }
+        
+        // Cerrar modal si se hace clic fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        // Iniciar corazones cada cierto tiempo
+        setInterval(crearCorazon, 500);
+    </script>
+</body>
+</html>
